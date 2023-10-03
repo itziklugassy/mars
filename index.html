@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image Slideshow</title>
+    <style>
+        #slideshow {
+            width: 1920px;
+            height: 1000px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #slideshow img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        #slideshow img.active {
+            opacity: 1;
+        }
+
+        #contactForm {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="slideshow">
+        <img src="WhatsApp Image 2023-10-02 at 17.17.43.jpeg" alt="Slide 1" class="active">
+        <img src="WhatsApp Image 2023-10-02 at 17.17.44.jpeg" alt="Slide 2">
+        <img src="WhatsApp Image 2023-10-02 at 17.17.44 (1).jpeg" alt="Slide 3">
+
+        <div id="contactForm">
+            <h2>Save a place on Marac</h2>
+            <form onsubmit="return submitForm()">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div>
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let slides = document.querySelectorAll("#slideshow img");
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 2000); // Change slide every 2 seconds
+
+        function submitForm() {
+            alert('Nice to have you on board');
+            return false; // This will prevent the form from actually submitting and refreshing the page
+        }
+    </script>
+
+</body>
+
+</html>
